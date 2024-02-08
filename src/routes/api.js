@@ -56,7 +56,7 @@ const fetchNewsHeadline = async (newsOutlet) => {
 // sends news updates to the user
 router.get('/fetchUser', async (req, res) => {
 
-  const currUrl = `${req.protocol}://${req.get('host')}`;
+  const CURR_URL = "https://post-backend-j0fd.onrender.com";
 
   try {
     const response = await UserModel.find({});
@@ -64,7 +64,7 @@ router.get('/fetchUser', async (req, res) => {
 
     for (let user of response) {
       try {
-        await axios.post(`${currUrl}/api/sendEmail`, {
+        await axios.post(`${CURR_URL}/api/sendEmail`, {
           emailRecipient: user.email,
           emailSubject: `POST! | New article from ${user.newsOutlet}`,
           emailText: `Article title: "${await fetchNewsHeadline(user.newsOutlet)}"`
