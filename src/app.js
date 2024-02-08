@@ -12,7 +12,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect(process.env.MONGODB_CONNECTION_STRING);
+// mongoose.connect(process.env.MONGODB_CONNECTION_STRING);
+
+mongoose.connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASS}@users.abbiwhk.mongodb.net/postDB`);
+
 
 const PORT = process.env.API_PORT;
 
