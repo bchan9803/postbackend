@@ -4,7 +4,12 @@ import axios from 'axios';
 import * as cheerio from 'cheerio';
 import { UserModel } from '../models/Users.js';
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 const router = express.Router();
+
+const CURR_URL = "https://post-backend-j0fd.onrender.com";
 
 // actual webscrapper
 const fetchNewsHeadline = async (newsOutlet) => {
@@ -55,9 +60,6 @@ const fetchNewsHeadline = async (newsOutlet) => {
 
 // sends news updates to the user
 router.get('/fetchUser', async (req, res) => {
-
-  const CURR_URL = "https://post-backend-j0fd.onrender.com";
-
   try {
     const response = await UserModel.find({});
     res.json(response);
